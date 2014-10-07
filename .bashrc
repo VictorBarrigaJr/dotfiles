@@ -1,4 +1,4 @@
-## 
+# 
 # Copyright (C) 2014 Victor Barriga
 #
 # Author Victor Barriga <victorbarriga@live.com>
@@ -46,7 +46,6 @@
 #      ~/.bashrc, if that file exists. This may be inhibited by using the
 #      --norc option. The --rcfile file option will force Bash to read and
 #      execute commands from file instead of ~/.bashrc.
-
 
 
 # -----------------------------------
@@ -226,6 +225,10 @@ if [ -s ~/.nvm/nvm.sh ]; then
     source ~/.nvm/nvm.sh
     nvm use v0.10.12 &> /dev/null # silence nvm use; needed for rsync
 fi
+
+# 2.8) update
+# just a shortcut to update and upgrade the system
+alias update="sudo apt-get update && sudo apt-get upgrade" 
 
 ## ------------------------------
 ## -- 3) User-customized code  --
