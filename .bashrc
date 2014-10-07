@@ -228,7 +228,7 @@ fi
 
 # 2.8) update
 # just a shortcut to update and upgrade the system
-alias update="sudo apt-get update && sudo apt-get upgrade" 
+alias update&upgrade="sudo apt-get update && sudo apt-get upgrade" 
 
 ## ------------------------------
 ## -- 3) User-customized code  --
