@@ -1,4 +1,4 @@
-# 
+#!/bin/bash  
 # Copyright (C) 2014 Victor Barriga
 #
 # Author Victor Barriga <victorbarriga@live.com>

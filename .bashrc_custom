@@ -1,4 +1,4 @@
-#
+#!/bin/bash 
 # Copyright (C) 2014 Victor Barriga
 #
 # Created 2014-10-7
@@ -31,15 +31,16 @@
 #  http://www.dotfiles.org
 #
 #  The choice of colors was done for a shell with a dark background
-#+ (white on black), and this is usually also suited for pure text-mode
-#+ consoles (no X server available). If you use a white background,
-#+ you'll have to do some other choices for readability.
+# (white on black), and this is usually also suited for pure text-mode
+# consoles (no X server available). If you use a white background,
+# you'll have to do some other choices for readability.
 #
 #  This bashrc file is a bit overcrowded.
 #  Remember, it is just just an example.
 #  Tailor it to your needs.
 #
-# =============================================================== #
+#
+
 
 # --> Comments added by HOWTO author.
 
@@ -897,8 +898,6 @@ _make()
 complete -F _make -X '+($*|*.[cho])' make gmake pmake
 
 
-
-
 _killall()
 {
     local cur prev
@@ -917,22 +916,6 @@ _killall()
 }
 
 complete -F _killall killall killps
-
-###
-# WELCOME MESSAGE
-##
-
-# customize this first message with a message of your choice.
-# this will display the username, date, time, a calendar, the amount of users, and the up time.
-clear
-# Gotta love ASCII art with figlet
-#figlet "Welcome, " $USER;
-#echo -e ""
-#echo -ne "Today is "; date
-#echo -e ""; cal ;
-#echo -ne "Up time:";uptime | awk /'up/'
-#echo "";
-
 
 # Local Variables:
 # mode:shell-script
