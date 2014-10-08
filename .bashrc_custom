@@ -51,7 +51,6 @@
 # Source global definitions (if any)
 #-------------------------------------------------------------
 
-
 if [ -f /etc/bashrc ]; then
       . /etc/bashrc   # --> Read /etc/bashrc, if present.
 fi
@@ -94,7 +93,9 @@ fi
 #fi
 #
 #export DISPLAY
-#
+
+
+
 #-------------------------------------------------------------
 # Some settings
 #-------------------------------------------------------------
@@ -167,22 +168,37 @@ On_White='\e[47m'       # White
 
 NC="\e[m"               # Color Reset
 
-
 ALERT=${BWhite}${On_Red} # Bold White on red background
 
+# size of data on disk
+disk_available=$(df -h --block-size=1024 | awk '{sum += $4;} END {print sum;}');
+disk_used=$(df -h --block-size=1024 | awk '{sum += $3;} END {print sum;}');
+disk_size=$(df -h --block-size=1024 | awk '{sum += $2;} END {print sum;}');
+disk_available_mb=$(echo "scale=2; $disk_available/(1024^2)" | bc)
+disk_used_mb=$(echo "scale=2; $disk_used/(1024^2)" | bc)
+disk_size_mb=$(echo "scale=2; $disk_size/(1024^2)" | bc)
+
 # Welcome message
+echo -e "${BGreen}+----------------------------------------------------------------------${BCyan}"
 figlet "Welcome, "$USER;
-echo -e "" 
-echo -e "${BCyan}This is BASH ${BRed}${BASH_VERSION%.*}${BCyan}\
-- DISPLAY on ${BRed}$DISPLAY${NC}\n"
-
-echo -ne "Today is "; date
-echo -e ""; cal ;
-
+echo -e "${BGreen}+----------------------------------------------------------------------"
+echo -e "${BCyan}BASH: ${BRed}${BASH_VERSION%.*}${BCyan}\
+ - DISPLAY on ${BRed}$DISPLAY${BCyan} - DIRECTORY: ${BRed}$PWD\
+${BCyan} - USER: ${BRed}"$USER 
+echo -ne "${BCyan}DATE: ${BRed}"; date
+echo -ne "${BCyan}Uptime: ${BRed}"; uptime | awk /'up/';
+echo -e "${BGreen}+----------------------------------------------------------------------"
+echo -e "${BCyan}Disk Space: ${BRed}${disk_size_mb} GB\
+${BCyan} - Free Space: ${BRed}${disk_available_mb} GB\
+${BCyan} - Used Space: ${BRed}${disk_used_mb} GB"
+df -h | column -c 6 | awk '{printf "\033[01;36m%-20s\t\033[01;31m%s\t%s\t%s\t%s\n", $1, $2, $3, $4, $5, $6}\'
+echo -e "${BGreen}+----------------------------------------------------------------------${BCyan}"
+ 
+#echo -e ""; cal ; 
 if [ -x /usr/games/fortune ]; then
     /usr/games/fortune -s     # Makes our day a bit more fun.... :-)
 fi
-
+echo -e "${NC}"
 function _exit()              # Function to run upon exit of shell.
 {
     echo -e "${BRed}Hasta la vista, baby${NC}"
@@ -242,8 +258,6 @@ elif [[ ${USER} != $(logname) ]]; then
 else
     SU=${BCyan}         # User is normal (well ... most of us are).
 fi
-
-
 
 NCPU=$(grep -c 'processor' /proc/cpuinfo)    # Number of CPUs
 SLOAD=$(( 100*${NCPU} ))        # Small load
@@ -306,7 +320,6 @@ function job_color()
 }
 
 # Adds some text in the terminal frame (if applicable).
-
 
 # Now we construct the prompt.
 PROMPT_COMMAND="history -a"
