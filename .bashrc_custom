@@ -180,20 +180,25 @@ disk_used_mb=$(echo "scale=2; $disk_used/(1024^2)" | bc)
 disk_size_mb=$(echo "scale=2; $disk_size/(1024^2)" | bc)
 
 # Welcome message
-echo -e "${BGreen}+----------------------------------------------------------------------${BCyan}"
+echo -e "${BGreen}+------------------------------------------------------------\
+----------${BCyan}"
 figlet "Welcome, "$USER;
-echo -e "${BGreen}+----------------------------------------------------------------------"
+echo -e "${BGreen}+------------------------------------------------------------\
+----------"
 echo -e "${BCyan}BASH: ${BRed}${BASH_VERSION%.*}${BCyan}\
  - DISPLAY on ${BRed}$DISPLAY${BCyan} - DIRECTORY: ${BRed}$PWD\
 ${BCyan} - USER: ${BRed}"$USER 
 echo -ne "${BCyan}DATE: ${BRed}"; date
 echo -ne "${BCyan}Uptime: ${BRed}"; uptime | awk /'up/';
-echo -e "${BGreen}+----------------------------------------------------------------------"
+echo -e "${BGreen}+------------------------------------------------------------\
+----------"
 echo -e "${BCyan}Disk Space: ${BRed}${disk_size_mb} GB\
 ${BCyan} - Free Space: ${BRed}${disk_available_mb} GB\
 ${BCyan} - Used Space: ${BRed}${disk_used_mb} GB"
-df -h | column -c 6 | awk '{printf "\033[01;36m%-20s\t\033[01;31m%s\t%s\t%s\t%s\n", $1, $2, $3, $4, $5, $6}\'
-echo -e "${BGreen}+----------------------------------------------------------------------${BCyan}"
+df -h | column -c 6 | awk '{printf "\033[01;36m%-20s\t\033[01;31m%s\t%s\t%s\t%s\
+\n", $1, $2, $3, $4, $5, $6}\'
+echo -e "${BGreen}+------------------------------------------------------------\
+----------${BCyan}"
  
 #echo -e ""; cal ; 
 if [ -x /usr/games/fortune ]; then
