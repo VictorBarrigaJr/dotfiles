@@ -326,7 +326,7 @@ case ${TERM} in
         ;;
         
         *)
-        PS1="(\A \u@\h \W) : " # --> PS1="(\A \u@\h \w) > "
+        PS1="(\A \u@\h \W) > " # --> PS1="(\A \u@\h \w) > "
                                # --> Shows full pathname of current dir.
         ;;
 esac
