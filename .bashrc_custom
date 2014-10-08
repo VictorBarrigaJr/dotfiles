@@ -180,8 +180,8 @@ disk_used_mb=$(echo "scale=2; $disk_used/(1024^2)" | bc)
 disk_size_mb=$(echo "scale=2; $disk_size/(1024^2)" | bc)
 
 # Welcome message
-echo -e "${BGreen}+------------------------------------------------------------\
-----------${BCyan}"
+#echo -e "${BGreen}+------------------------------------------------------------\
+#----------${BCyan}"
 figlet "Welcome, "$USER;
 echo -e "${BGreen}+------------------------------------------------------------\
 ----------"
@@ -205,6 +205,7 @@ if [ -x /usr/games/fortune ]; then
     /usr/games/fortune -s     # Makes our day a bit more fun.... :-)
 fi
 echo -e "${NC}"
+
 function _exit()              # Function to run upon exit of shell.
 {
     echo -e "${BRed}Hasta la vista, baby${NC}"
