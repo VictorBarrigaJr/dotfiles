@@ -66,35 +66,35 @@ fi
 #+ of cases.
 #--------------------------------------------------------------
 
-function get_xserver ()
-{
-    case $TERM in
-        xterm )
-            XSERVER=$(who am i | awk '{print $NF}' | tr -d ')''(' )
-            # Ane-Pieter Wieringa suggests the following alternative:
-            #  I_AM=$(who am i)
-            #  SERVER=${I_AM#*(}
-            #  SERVER=${SERVER%*)}
-            XSERVER=${XSERVER%%:*}
-            ;;
-            aterm | rxvt)
-            # Find some code that works here. ...
-            ;;
-    esac
-}
-
-if [ -z ${DISPLAY:="\"} ]; then
-    get_xserver
-    if [[ -z ${XSERVER}  || ${XSERVER} == $(hostname) ||
-       ${XSERVER} == "unix" ]]; then
-          DISPLAY=":0.0"          # Display on local host.
-    else
-       DISPLAY=${XSERVER}:0.0     # Display on remote host.
-    fi
-fi
-
-export DISPLAY
-
+#function get_xserver ()
+#{
+#    case $TERM in
+#        xterm )
+#            XSERVER=$(who am i | awk '{print $NF}' | tr -d ')''(' )
+#            # Ane-Pieter Wieringa suggests the following alternative:
+#            #  I_AM=$(who am i)
+#            #  SERVER=${I_AM#*(}
+#            #  SERVER=${SERVER%*)}
+#            XSERVER=${XSERVER%%:*}
+#            ;;
+#            aterm | rxvt)
+#            # Find some code that works here. ...
+#            ;;
+#    esac
+#}
+#
+#if [ -z ${DISPLAY:="\"} ]; then
+#    get_xserver
+#    if [[ -z ${XSERVER}  || ${XSERVER} == $(hostname) ||
+#       ${XSERVER} == "unix" ]]; then
+#          DISPLAY=":0.0"          # Display on local host.
+#    else
+#       DISPLAY=${XSERVER}:0.0     # Display on remote host.
+#    fi
+#fi
+#
+#export DISPLAY
+#
 #-------------------------------------------------------------
 # Some settings
 #-------------------------------------------------------------
@@ -170,11 +170,15 @@ NC="\e[m"               # Color Reset
 
 ALERT=${BWhite}${On_Red} # Bold White on red background
 
-
-
+# Welcome message
+figlet "Welcome, "$USER;
+echo -e "" 
 echo -e "${BCyan}This is BASH ${BRed}${BASH_VERSION%.*}${BCyan}\
 - DISPLAY on ${BRed}$DISPLAY${NC}\n"
-date
+
+echo -ne "Today is "; date
+echo -e ""; cal ;
+
 if [ -x /usr/games/fortune ]; then
     /usr/games/fortune -s     # Makes our day a bit more fun.... :-)
 fi
@@ -316,12 +320,13 @@ case ${TERM} in
         # PWD (with 'disk space' info):
         PS1=${PS1}"\[\$(disk_color)\]\W]\[${NC}\] "
         # Prompt (with 'job' info):
-        PS1=${PS1}\"\[\$(job_color)\]>\[${NC}\] "
+        PS1=${PS1}"\[\$(job_color)\]>\[${NC}\] "
         # Set title of current xterm:
-        PS1=${PS1}"\[\e]0;[\u@\h] \w\a\]\"
+        PS1=${PS1}"\[\e]0;[\u@\h] \w\a\] "
         ;;
-    *)
-        PS1="(\A \u@\h \W) > " # --> PS1="(\A \u@\h \w) > "
+        
+        *)
+        PS1="(\A \u@\h \W) : " # --> PS1="(\A \u@\h \w) > "
                                # --> Shows full pathname of current dir.
         ;;
 esac
@@ -900,13 +905,6 @@ _killall()
 
 complete -F _killall killall killps
 
-
-
-# Local Variables:
-# mode:shell-script
-# sh-shell:bash
-# End:
-
 ###
 # WELCOME MESSAGE
 ##
@@ -921,4 +919,10 @@ clear
 #echo -e ""; cal ;
 #echo -ne "Up time:";uptime | awk /'up/'
 #echo "";
+
+
+# Local Variables:
+# mode:shell-script
+# sh-shell:bash
+# End:
 

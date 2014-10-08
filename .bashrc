@@ -11,6 +11,7 @@
 # This file is not part of GNU Bash
 #
 # Concepts:
+# http://www.joshstaiger.org/archives/2005/07/bash_profile_vs.html
 #
 #    1) .bashrc is the *non-login* config for bash, run in scripts and after
 #        first connection.
