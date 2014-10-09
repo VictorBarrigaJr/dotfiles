@@ -117,6 +117,8 @@
 (setq inhibit-splash-screen t) ;; no splash screen at startup
 (setq-default indent-tabs-mode nil) ;; no tabs
 (menu-bar-mode -1) ;; no menu toolbar 
+(display-time-mode t) ;; adds time to bottom window 
+(column-number-mode t)
 
 ;; insert line numbers
 (global-linum-mode 1) ;; add line numbers to the left
