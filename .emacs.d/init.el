@@ -119,6 +119,7 @@
 (menu-bar-mode -1) ;; no menu toolbar 
 (display-time-mode t) ;; adds time to bottom window 
 (column-number-mode t)
+(mouse-avoidance-mode 'banish) ;; hides mouse cursor when not moved
 
 ;; insert line numbers
 (global-linum-mode 1) ;; add line numbers to the left
@@ -142,6 +143,9 @@
 ;;golden ratio package 
 (require 'golden-ratio)
 (golden-ratio-mode) ;; allows for automatic buffer size based on current window 
+
+;; wraps lines around in a nice way
+(global-visual-line-mode 1)
 
 (custom-set-faces ;;custom settings  
  '(flymake-errline ((((class color) (background light)) (:background "Red"))))
