@@ -173,7 +173,7 @@
 (ac-config-default) ;; auto-complete global
 (yas-global-mode 1) ;; yasnippet global
 (require 'flymake)
-(normal-erase-is-backspace-mode 1)
+;;(normal-erase-is-backspace-mode 1)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (setq save-abbrevs nil)
