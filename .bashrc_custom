@@ -186,8 +186,8 @@ figlet "Welcome, "$USER;
 echo -e "${BGreen}+------------------------------------------------------------\
 ----------"
 echo -e "${BCyan}BASH: ${BRed}${BASH_VERSION%.*}${BCyan}\
- - DISPLAY on ${BRed}$DISPLAY${BCyan} - DIRECTORY: ${BRed}$PWD\
-${BCyan} - USER: ${BRed}"$USER 
+ - DISPLAY on ${BRed}$DISPLAY${BCyan} - USER: ${BRed}$USER \
+${BCyan} - DIRECTORY: ${BRed}"$PWD;  
 echo -ne "${BCyan}DATE: ${BRed}"; date
 echo -ne "${BCyan}Uptime: ${BRed}"; uptime | awk /'up/';
 echo -e "${BGreen}+------------------------------------------------------------\
